@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wasm tests</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/@assemblyscript/loader/umd/index.js"></script>
+<script src="./js/loader.js"></script>
+<script>
+  const WL = new WasmLoader();
+  WL.wasm("./build/optimized.wasm")
+  .then( instance => {
+    const { fizzbuzz, __getString } = instance;
+    const str = __getString(fizzbuzz(9));
+    document.write(str);
+  })
+</script>
+</body>
+</html>
