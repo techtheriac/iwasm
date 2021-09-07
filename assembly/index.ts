@@ -1,21 +1,11 @@
-declare function log(n : string | null) : void;
+// Allocate two pages of memory to a web assembly process - a page being 64kb
+memory.grow(2);
+// Store an unsigned 8bit integer at index 0
+store<u8>(0, 21);
+// Store an unsigned 8bit integer at index 1
+store<u8>(1, 99);
 
-function isDivisible(number : i32, divisor : i32) : bool {
-  if(number % divisor == 0) {
-    return true;
-  }
-  return false;
-}
-
-export function fizzbuzz(n : i32) : string | null {
-  if(isDivisible(n, 15))
-    return "fizzbuzz"
-
-  if(isDivisible(n, 3))
-    return "fizz"
-
-  if(isDivisible(n, 5))
-    return "buzz"
-
-  return null;
+export function readMemory(n: i32) :i32 {
+  // read an unsigned 8bit integer at index `n`
+  return load<u8>(n);
 }
